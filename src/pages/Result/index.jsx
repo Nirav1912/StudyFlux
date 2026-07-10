@@ -64,10 +64,8 @@ const performance = getPerformance();
       <div className="w-full max-w-7xl mx-auto pb-32">
 
         <h1 className="text-4xl md:text-5xl font-bold mb-6">
-          🎉 Test Completed
-        </h1>
-         <div className="flex gap-5 mt-10">
-
+  🎉 Test Completed
+</h1>
         {/* Score Cards */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -93,7 +91,7 @@ const performance = getPerformance();
           </div>
 
         </div>
-<div className="mt-8 bg-white border border-gray-200 rounded-3xl p-6 shadow-md"
+<div className="mt-8 bg-white border border-gray-200 rounded-3xl p-6 shadow-md">
 
   <h2 className="text-3xl font-bold text-center">
     {performance.title}
@@ -222,24 +220,24 @@ const performance = getPerformance();
         {/* Buttons */}
 
        
+<div className="flex gap-5 mt-10">
 
-          <Link
-            to="/dashboard"
-            className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:scale-105 transition"
-          >
-            Dashboard
-          </Link>
+  <Link
+    to="/dashboard"
+    className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:scale-105 transition"
+  >
+    Dashboard
+  </Link>
 
-          <Link
-            to="/create-test"
-            className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:scale-105 transition"
-          >
-            Create New Test
-          </Link>
+  <Link
+    to="/create-test"
+    className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:scale-105 transition"
+  >
+    Create New Test
+  </Link>
 
-        </div>
-
-      </div>
+</div>
+    </div>
     </div>
   );
 }

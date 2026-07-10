@@ -196,7 +196,7 @@ useEffect(() => {
 
         {/* Buttons */}
 
-        <div className="grid md:grid-cols-3 gap-4 mt-10"
+        <div className="grid md:grid-cols-3 gap-4 mt-10">
 
   {!examMode && (
   <button
