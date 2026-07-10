@@ -1,15 +1,23 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 export default function MainLayout({ children }) {
-  return (
+  const location = useLocation();
+
+  const hideNavbar =
+  location.pathname === "/test" ||
+  location.pathname === "/result";
+  
+    return (
+    
     <div className="min-h-screen bg-slate-950 text-white">
 
       {/* Navbar */}
 
-      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl rounded-2xl border border-white/10 bg-slate-900/70 backdrop-blur-xl shadow-2xl">
+      {!hideNavbar && (
+  <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl rounded-2xl border border-white/10 bg-slate-900/70 backdrop-blur-xl shadow-2xl">
 
   <div className="px-4 py-4 flex items-center justify-between">
-
+  
     {/* Logo */}
 
     <Link
@@ -95,6 +103,7 @@ export default function MainLayout({ children }) {
   </div>
 
 </nav>
+      )}
 
       {/* Page Content */}
 

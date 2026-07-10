@@ -290,19 +290,23 @@ alert(
     Question Format
   </h2>
 
- <select
-  value={formats[0]}
-  onChange={(e) => setFormats([e.target.value])}
-  className="w-full bg-white border border-gray-300 rounded-xl p-4 text-slate-900"
->
-  
-  {questionFormats.map((item) => (
-    <option key={item} value={item}>
-      {item}
-      className="bg-white text-slate-900"
-    </option>
-  ))}
-</select>
+  <select
+    value={formats[0]}
+    onChange={(e) => setFormats([e.target.value])}
+    className="w-full bg-white border border-gray-300 rounded-xl p-4 text-slate-900"
+  >
+
+    {questionFormats.map((item) => (
+      <option
+        key={item}
+        value={item}
+        className="bg-white text-slate-900"
+      >
+        {item}
+      </option>
+    ))}
+
+  </select>
 
 </div>
 
