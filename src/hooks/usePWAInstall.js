@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 
 export default function usePWAInstall() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [canInstall, setCanInstall] = useState(false);
 
   useEffect(() => {
     const handler = (e) => {
       e.preventDefault();
+
       setDeferredPrompt(e);
+      setCanInstall(true);
     };
 
     window.addEventListener(
@@ -22,23 +25,26 @@ export default function usePWAInstall() {
     };
   }, []);
 
-  async function install() {
-    if (!deferredPrompt) {
-      alert(
-        "Installation is not available yet. Please open the site in Chrome and try again."
-      );
-      return;
-    }
-
-    deferredPrompt.prompt();
-
-    await deferredPrompt.userChoice;
-
-    setDeferredPrompt(null);
+  const install = async () => {
+  if (!deferredPrompt) {
+    return false;
   }
 
+  deferredPrompt.prompt();
+
+  const choiceResult =
+    await deferredPrompt.userChoice;
+
+  if (choiceResult.outcome === "accepted") {
+    setDeferredPrompt(null);
+    setCanInstall(false);
+  }
+
+  return true;
+};
+
   return {
-    canInstall: !!deferredPrompt,
+    canInstall,
     install,
   };
 }

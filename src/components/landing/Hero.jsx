@@ -72,15 +72,27 @@ const [showInstallGuide, setShowInstallGuide] = useState(false);
 
           <div className="flex flex-wrap gap-5 mt-10">
 
-  <Link
+ <Link
   to={user ? "/dashboard" : "/auth"}
-  className="px-8 py-4 rounded-2xl bg-red-700 hover:bg-red-800 text-white font-semibold shadow-xl transition-all hover:-translate-y-1"
+  key={user ? "logged-in" : "logged-out"}
 >
   🚀 Start Learning
 </Link>
+<Link
+  to={user ? "/dashboard" : "/auth"}
+  className="px-8 py-4 rounded-2xl bg-slate-900 hover:bg-black text-white font-semibold shadow-xl transition-all hover:-translate-y-1"
+>
+  📊 Go to Dashboard
+</Link>
 
   <button
-  onClick={() => setShowInstallGuide(true)}
+  onClick={async () => {
+    const installed = await install();
+
+    if (!installed) {
+      setShowInstallGuide(true);
+    }
+  }}
   className="
     px-8 py-4 rounded-2xl bg-white border border-gray-300
     hover:border-red-600 hover:text-red-700
