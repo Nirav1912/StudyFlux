@@ -36,19 +36,19 @@ export default function Settings() {
 
       <div className="flex items-center gap-6 mb-8">
 
-        <div className="w-24 h-24 rounded-[28px] bg-red-50 flex items-center justify-center text-6xl">
-          ⚙️
-        </div>
+       <div className="w-20 h-20 rounded-3xl bg-red-50 flex items-center justify-center text-5xl">
+  ⚙️
+</div>
 
         <div>
 
-          <h1 className="text-7xl font-black text-slate-900">
-            Settings
-          </h1>
+          <h1 className="text-5xl md:text-7xl font-black text-slate-900">
+  Settings
+</h1>
 
-          <p className="text-2xl text-gray-500 mt-2">
-            Manage your StudyFlux preferences.
-          </p>
+<p className="mt-2 text-lg md:text-2xl text-gray-500">
+  Manage your StudyFlux preferences.
+</p>
 
         </div>
 

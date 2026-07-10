@@ -44,7 +44,7 @@ const [avatar, setAvatar] = useState(
 }
 
   return (
-  <div className="min-h-screen w-full bg-gradient-to-br from-[#fff7f7] via-[#f9f6f3] to-[#fff4f8] pt-44 pb-40 px-8 relative overflow-hidden">
+  <div className="min-h-screen w-full bg-gradient-to-br from-[#fff7f7] via-[#f9f6f3] to-[#fff4f8] pt-24 md:pt-44 pb-32 px-4 md:px-8 relative overflow-hidden">
 
     {/* Background blobs */}
 
@@ -58,18 +58,18 @@ const [avatar, setAvatar] = useState(
 
       {/* Header */}
 
-      <div className="flex items-center gap-6 mb-10">
+      <div className="flex items-center gap-4 md:gap-6 mb-8 md:mb-10">
 
-        <div className="w-24 h-24 rounded-[28px] bg-red-50 flex items-center justify-center text-6xl">
+       <div className="w-20 h-20 md:w-24 md:h-24 rounded-[28px] bg-red-50 flex items-center justify-center text-5xl md:text-6xl">
           🧑‍💻
         </div>
 
         <div>
-          <h1 className="text-7xl font-black text-slate-900">
-            My Profile
-          </h1>
+         <h1 className="text-5xl md:text-7xl font-black text-slate-900">
+  My <span className="text-red-600">Profile</span>
+</h1>
 
-          <p className="text-2xl text-gray-500 mt-2">
+         <p className="text-lg md:text-2xl text-gray-500 mt-2">
             Manage your StudyFlux account.
           </p>
         </div>
@@ -83,7 +83,7 @@ const [avatar, setAvatar] = useState(
         <img
           src={avatar}
           alt="Avatar"
-          className="w-44 h-44 rounded-full border-[6px] border-red-500 object-cover shadow-xl"
+          className="w-32 h-32 md:w-44 md:h-44 rounded-full border-[5px] md:border-[6px] border-red-500 object-cover shadow-xl"
         />
 
         <input
@@ -96,7 +96,7 @@ const [avatar, setAvatar] = useState(
 
         <button
           onClick={() => fileInputRef.current.click()}
-          className="mt-6 px-8 py-3 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold shadow-lg transition"
+          className="mt-5 px-6 py-2 md:px-8 md:py-3 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold shadow-lg transition"
         >
           Change Avatar
         </button>
@@ -107,7 +107,7 @@ const [avatar, setAvatar] = useState(
 
       <div className="grid md:grid-cols-2 gap-6 mt-12">
 
-        <div className="rounded-3xl border border-gray-200 p-6">
+        <div className="rounded-3xl border border-gray-200 p-4 md:p-6">
           <p className="text-gray-500 mb-2">Full Name</p>
 
           <input
@@ -145,7 +145,7 @@ const [avatar, setAvatar] = useState(
 
           <div className="text-center">
 
-            <h3 className="text-4xl font-bold text-red-600">
+           <h3 className="text-3xl md:text-4xl font-bold text-red-600">
               24
             </h3>
 

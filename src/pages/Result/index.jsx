@@ -63,9 +63,10 @@ const performance = getPerformance();
     <div className="min-h-screen w-full bg-gradient-to-br from-[#fff7f7] via-[#f9f6f3] to-[#fff4f8] text-slate-900 py-10 px-8">
       <div className="w-full max-w-7xl mx-auto pb-32">
 
-        <h1 className="text-5xl font-bold mb-8">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">
           🎉 Test Completed
         </h1>
+         <div className="flex gap-5 mt-10">
 
         {/* Score Cards */}
 
@@ -92,13 +93,13 @@ const performance = getPerformance();
           </div>
 
         </div>
-<div className="mt-10 bg-white border border-gray-200 rounded-3xl p-8 shadow-md">
+<div className="mt-8 bg-white border border-gray-200 rounded-3xl p-6 shadow-md"
 
-  <h2 className="text-4xl font-bold text-center">
+  <h2 className="text-3xl font-bold text-center">
     {performance.title}
   </h2>
 
-  <p className="text-center text-3xl mt-4">
+  <p className="text-center text-2xl mt-2">
     {performance.stars}
   </p>
 
@@ -131,10 +132,9 @@ const performance = getPerformance();
 
         {result.analysis && (
           <div className="mt-10 bg-white border border-gray-200 rounded-3xl p-8 shadow-md">
-            <h2 className="text-3xl font-bold mb-5">
-              🟢 Strong Topics
-            </h2>
-
+            <h2 className="text-2xl font-bold mb-4">
+  ✅ Strong Topics
+</h2>
             <div className="flex flex-wrap gap-3">
               {result.analysis.strongTopics.length > 0 ? (
                 result.analysis.strongTopics.map((topic) => (
@@ -156,9 +156,9 @@ const performance = getPerformance();
 
         {result.analysis && (
           <div className="mt-10">
-            <h2 className="text-3xl font-bold mb-5">
-              🔴 Weak Topics
-            </h2>
+            <h2 className="text-2xl font-bold mb-4">
+  ⚠️ Weak Topics
+</h2>
 
             <div className="flex flex-wrap gap-3">
               {result.analysis.weakTopics.length > 0 ? (
@@ -202,17 +202,17 @@ const performance = getPerformance();
                 ❌ Your Answer: {result.answers[index] || "Not Answered"}
               </p>
 
-              <div className="mt-4 bg-gray-50 border border-gray-200 rounded-2xl p-4">
+              <details className="mt-4 bg-gray-50 border border-gray-200 rounded-2xl p-4">
 
-                <h4 className="text-cyan-400 font-bold mb-2">
-                  AI Explanation
-                </h4>
+  <summary className="cursor-pointer text-cyan-500 font-bold">
+    🤖 Show AI Explanation
+  </summary>
 
-                <p className="text-gray-600">
-                  {q.explanation}
-                </p>
+  <p className="mt-4 text-gray-600">
+    {q.explanation}
+  </p>
 
-              </div>
+</details>
 
             </div>
           ))}
@@ -221,7 +221,7 @@ const performance = getPerformance();
 
         {/* Buttons */}
 
-        <div className="flex gap-5 mt-10">
+       
 
           <Link
             to="/dashboard"

@@ -46,20 +46,16 @@ useEffect(() => {
 
         <div className="mt-10 bg-white rounded-[32px] p-10 border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.08)] flex flex-col items-center text-center">
 
-          <h2 className="text-4xl font-bold">
+          <h1 className="text-4xl font-extrabold text-red-600">
+  💻 Build Your Coding Skills
+</h1>
 
-            Ready to Improve?
-
-          </h2>
-
-          <p className="mt-3 text-gray-500">
-
-            AI will generate your next programming test.
-
-          </p>
+<p className="mt-2 text-gray-500 text-lg">
+  AI will generate your next programming test.
+</p>
 
           <Link to="/create-test" className="mt-8">
-  <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-7 py-3 rounded-xl font-bold hover:scale-105 transition">
+  <button className="px-6 py-5 rounded-3xl bg-gradient-to-r from-red-600 to-red-500 text-white font-bold shadow-lg">
     Create New Test
   </button>
 </Link>
@@ -78,7 +74,7 @@ useEffect(() => {
     </h3>
 
     <p className="text-slate-400 mt-2">
-      Tests Completed
+     📚 Tests Completed
     </p>
   </div>
 
@@ -96,7 +92,7 @@ useEffect(() => {
     </h3>
 
     <p className="text-slate-400 mt-2">
-      Average Accuracy
+     🎯 Average Accuracy
     </p>
   </div>
 
@@ -110,7 +106,7 @@ useEffect(() => {
     </h3>
 
     <p className="text-slate-400 mt-2">
-      Best Score
+      🏆 Best Score
     </p>
   </div>
 
@@ -122,7 +118,7 @@ useEffect(() => {
     </h3>
 
     <p className="text-slate-400 mt-2">
-      Last Test
+     ⚡ Last Test
     </p>
   </div>
 

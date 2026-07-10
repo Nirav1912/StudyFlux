@@ -57,7 +57,7 @@ export default function Progress() {
     results.reduce((sum, r) => sum + r.score, 0);
 
   return (
-  <div className="min-h-screen w-full bg-gradient-to-br from-[#fff7f7] via-[#f9f6f3] to-[#fff4f8] px-8 pt-36 pb-40">
+  <div className="min-h-screen w-full bg-gradient-to-br from-[#fff7f7] via-[#f9f6f3] to-[#fff4f8] px-4 md:px-8 pt-24 md:pt-36 pb-32">
 
     {/* Background blur */}
 
@@ -71,17 +71,17 @@ export default function Progress() {
 
       <div className="flex items-center gap-6 mb-10">
 
-        <div className="w-24 h-24 rounded-[28px] bg-red-50 flex items-center justify-center text-6xl">
+        <div className="w-20 h-20 md:w-24 md:h-24 rounded-[28px] bg-red-50 flex items-center justify-center text-5xl md:text-6xl">
           📊
         </div>
 
         <div>
 
-          <h1 className="text-7xl font-black text-slate-900">
-            My Progress
-          </h1>
+          <h1 className="text-5xl md:text-7xl font-black text-slate-900">
+  My <span className="text-red-600">Progress</span>
+</h1>
 
-          <p className="text-2xl text-gray-500 mt-2">
+          <p className="text-lg md:text-2xl text-gray-500 mt-2">
             Track your performance and growth.
           </p>
 
@@ -93,7 +93,7 @@ export default function Progress() {
 
       {/* Stats Cards */}
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
 
   {/* Tests Taken */}
 
@@ -157,7 +157,7 @@ export default function Progress() {
 
       <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-md mt-10">
 
-        <h2 className="text-4xl font-bold text-slate-900 mb-8">
+        <h2 className="text-2xl md:text-4xl font-bold text-slate-900 mb-6">
           Accuracy Trend
         </h2>
 
