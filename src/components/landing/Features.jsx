@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   FaRobot,
   FaChartLine,
@@ -161,9 +162,11 @@ export default function Features() {
               feedback.
             </p>
 
-            <button className="mt-10 px-10 py-4 rounded-2xl bg-gradient-to-r from-red-700 to-red-500 text-white text-lg font-bold shadow-xl hover:scale-105 transition-all">
-              Start Learning →
-            </button>
+            <Link to="/create-test">
+  <button className="mt-10 px-10 py-4 rounded-2xl bg-gradient-to-r from-red-700 to-red-500 text-white text-lg font-bold shadow-xl hover:scale-105 transition-all">
+    Start Learning →
+  </button>
+</Link>
 
           </div>
         </motion.div>

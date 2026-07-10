@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login, register } from "../../services/auth";
+import { supabase } from "../../lib/supabase";
 import {
   showSuccess,
   showWarning,
@@ -49,6 +50,25 @@ export default function Auth() {
       showWarning("Please fill all fields");
       return;
     }
+    async function handleForgotPassword() {
+  if (!email) {
+    showWarning("Please enter your email first");
+    return;
+  }
+
+  const { error } = await supabase.auth.resetPasswordForEmail(
+    email,
+    {
+      redirectTo: "http://localhost:5173/reset-password",
+    }
+  );
+
+  if (error) {
+    showError(error.message);
+  } else {
+    showSuccess("Password reset email sent 📩");
+  }
+}
 
     try {
       setLoading(true);
@@ -69,7 +89,30 @@ export default function Auth() {
       setLoading(false);
     }
   }
+async function handleForgotPassword() {
+  if (!email) {
+    showWarning("Please enter your email first");
+    return;
+  }
 
+  try {
+    const { error } = await supabase.auth.resetPasswordForEmail(
+      email,
+      {
+        redirectTo: "http://localhost:5173/reset-password",
+      }
+    );
+
+    if (error) {
+      showError(error.message);
+      return;
+    }
+
+    showSuccess("Password reset email sent 📩");
+  } catch (err) {
+    showError(err.message);
+  }
+}
   return (
    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#fff4f4] via-[#fdf8f2] to-[#fff0f7] flex items-center justify-center px-5">
         {/* Background glow */}
@@ -138,6 +181,16 @@ export default function Auth() {
   placeholder="Password"
   className="w-full p-5 rounded-[20px] border-2 border-gray-400 bg-white text-black mb-5 outline-none focus:border-red-500"
 />
+{tab === "login" && (
+  <div className="flex justify-end mb-5">
+    <button
+      onClick={handleForgotPassword}
+      className="text-red-500 hover:text-red-700 text-sm font-semibold"
+    >
+      Forgot Password?
+    </button>
+  </div>
+)}
 
         {tab === "login" ? (
           <button

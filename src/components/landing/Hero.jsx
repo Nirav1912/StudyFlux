@@ -9,6 +9,7 @@ import { useAuth } from "../../context/AuthContext";
 
 export default function Hero() {
 const { user } = useAuth();
+const { install } = usePWAInstall();
 
 
 const [showInstallGuide, setShowInstallGuide] = useState(false);
@@ -74,7 +75,7 @@ const [showInstallGuide, setShowInstallGuide] = useState(false);
 
  <Link
   to={user ? "/dashboard" : "/auth"}
-  key={user ? "logged-in" : "logged-out"}
+  className="px-8 py-4 rounded-2xl bg-gradient-to-r from-red-700 to-red-500 text-white font-semibold shadow-xl transition-all hover:-translate-y-1"
 >
   🚀 Start Learning
 </Link>

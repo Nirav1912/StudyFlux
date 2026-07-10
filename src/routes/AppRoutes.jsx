@@ -19,6 +19,7 @@ import MainLayout from "../layouts/MainLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import History from "../pages/History";
 import Progress from "../pages/Progress";
+import ResetPassword from "../pages/ResetPassword";
 
 export default function AppRoutes() {
   return (
@@ -33,6 +34,7 @@ export default function AppRoutes() {
         <Route path="/auth" element={<Auth />} />
 
         {/* Protected Routes */}
+       <Route path="/reset-password" element={<ResetPassword />} />
         <Route
           path="/dashboard"
           element={
