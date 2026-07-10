@@ -107,7 +107,7 @@ useEffect(() => {
   return (
   <div className="min-h-screen bg-gradient-to-br from-[#fff7f7] via-[#f9f6f3] to-[#fff4f8] py-10 px-6">
 
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-7xl mx-auto px-4">
 
       {/* Header */}
 
@@ -150,18 +150,20 @@ useEffect(() => {
 
       {/* Main Card */}
 
-      <div className="bg-white rounded-[32px] p-10 shadow-[0_20px_60px_rgba(0,0,0,0.08)] w-full max-w-4xl md:ml-12">
+    <div className="bg-white rounded-[32px] p-10 shadow-[0_20px_60px_rgba(0,0,0,0.08)] w-full max-w-5xl mx-auto">
         <span className="inline-block bg-blue-100 text-blue-700 px-5 py-2 rounded-full font-semibold">
 
           {question.topic}
 
         </span>
 
-        <h1 className="text-4xl font-bold text-slate-900 mt-8 whitespace-pre-line">
+        <div className="mt-8 bg-slate-50 border border-slate-200 rounded-2xl p-8 overflow-x-auto">
 
-          {question.question}
+  <pre className="whitespace-pre-wrap break-words text-slate-900 text-lg leading-relaxed font-mono">
+    {question.question}
+  </pre>
 
-        </h1>
+</div>
 
         {/* Options */}
 
@@ -194,7 +196,7 @@ useEffect(() => {
 
         {/* Buttons */}
 
-        <div className="flex flex-wrap justify-center items-center gap-4 mt-10">
+        <div className="grid md:grid-cols-3 gap-4 mt-10"
 
   {!examMode && (
   <button

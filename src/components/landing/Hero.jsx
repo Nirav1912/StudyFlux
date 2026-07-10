@@ -1,12 +1,18 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import logo from "../../assets/logo.png";
 
 import usePWAInstall from "../../hooks/usePWAInstall";
+import { useAuth } from "../../context/AuthContext";
 
 
 export default function Hero() {
-const { canInstall, install } = usePWAInstall();
+const { user } = useAuth();
+
+
+const [showInstallGuide, setShowInstallGuide] = useState(false);
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white via-red-50/40 to-white">
         {/* Background Blobs */}
@@ -67,24 +73,23 @@ const { canInstall, install } = usePWAInstall();
           <div className="flex flex-wrap gap-5 mt-10">
 
   <Link
-    to="/auth"
-    className="px-8 py-4 rounded-2xl bg-red-700 hover:bg-red-800 text-white font-semibold shadow-xl transition-all hover:-translate-y-1"
-  >
-    🚀 Start Learning
-  </Link>
+  to={user ? "/dashboard" : "/auth"}
+  className="px-8 py-4 rounded-2xl bg-red-700 hover:bg-red-800 text-white font-semibold shadow-xl transition-all hover:-translate-y-1"
+>
+  🚀 Start Learning
+</Link>
 
   <button
-  onClick={install}
-  disabled={!canInstall}
+  onClick={() => setShowInstallGuide(true)}
   className="
     px-8 py-4 rounded-2xl bg-white border border-gray-300
     hover:border-red-600 hover:text-red-700
     font-semibold transition-all hover:-translate-y-1 shadow-sm
-    disabled:opacity-50 disabled:cursor-not-allowed
   "
 >
-  📲 {canInstall ? "Install App" : "Already Installed"}
+  📲 Install App
 </button>
+  
 
 </div>
 
@@ -218,7 +223,7 @@ const { canInstall, install } = usePWAInstall();
 
     {/* Button */}
 
-    <Link to="/create-test">
+    <Link to={user ? "/create-test" : "/auth"}>
   <button
     className="w-full mt-8 py-4 rounded-2xl bg-gradient-to-r from-red-700 to-red-500 text-white font-bold shadow-lg hover:scale-[1.02] transition"
   >
@@ -230,7 +235,52 @@ const { canInstall, install } = usePWAInstall();
 </motion.div>
 
       </div>
-</div>
+</div>{showInstallGuide && (
+  <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[999] px-6">
+
+    <div className="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl">
+
+      <h2 className="text-3xl font-black text-black text-center">
+        📲 Install StudyFlux
+      </h2>
+
+      <p className="text-gray-600 mt-4 text-center">
+        Follow these steps to install the app:
+      </p>
+
+      <div className="mt-8 space-y-4">
+
+        <div className="bg-gray-100 p-4 rounded-2xl">
+          <p className="font-semibold text-black">
+            1️⃣ Tap the ⋮ menu in Chrome.
+          </p>
+        </div>
+
+        <div className="bg-gray-100 p-4 rounded-2xl">
+          <p className="font-semibold text-black">
+            2️⃣ Select "Add to Home screen" or "Install app".
+          </p>
+        </div>
+
+        <div className="bg-gray-100 p-4 rounded-2xl">
+          <p className="font-semibold text-black">
+            3️⃣ Tap "Install".
+          </p>
+        </div>
+
+      </div>
+
+      <button
+        onClick={() => setShowInstallGuide(false)}
+        className="mt-8 w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded-2xl font-bold"
+      >
+        Got it 👍
+      </button>
+
+    </div>
+
+  </div>
+)}
     </section>
   );
 }
