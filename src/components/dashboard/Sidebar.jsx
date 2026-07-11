@@ -7,12 +7,18 @@ import {
   FaChartBar,
   FaAward,
   FaCog,
+  FaTachometerAlt,
 } from "react-icons/fa";
 
 const menu = [
   {
-    title: "Dashboard",
+    title: "Home",
     icon: <FaHome />,
+    path: "/",
+  },
+  {
+    title: "Dashboard",
+    icon: <FaTachometerAlt />,
     path: "/dashboard",
   },
   {
@@ -25,7 +31,6 @@ const menu = [
     icon: <FaHistory />,
     path: "/tests",
   },
-  
   {
     title: "Analytics",
     icon: <FaChartBar />,

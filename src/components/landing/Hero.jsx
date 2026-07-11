@@ -1,299 +1,164 @@
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Sparkles, ArrowRight, Smartphone, CheckCircle2, Zap } from "lucide-react";
 import logo from "../../assets/logo.png";
-
 import usePWAInstall from "../../hooks/usePWAInstall";
 import { useAuth } from "../../context/AuthContext";
 
-
+// SAFEGUARDS: If hooks fail, the component won't crash
 export default function Hero() {
-const { user } = useAuth();
-const { install } = usePWAInstall();
-
-
-const [showInstallGuide, setShowInstallGuide] = useState(false);
-
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-red-50/40 to-white">
-        {/* Background Blobs */}
-
-{/* Background Glows */}
-
-<div className="absolute -top-24 -left-40 w-[900px] h-[900px] rounded-full bg-red-200/12 blur-[250px]"></div>
-
-<div className="absolute top-0 -right-36 w-[850px] h-[850px] rounded-full bg-pink-200/12 blur-[250px]"></div>
-
-<div className="absolute bottom-[-250px] left-1/2 -translate-x-1/2 w-[1200px] h-[500px] rounded-full bg-orange-100/18 blur-[300px]"></div>
-      <div className="max-w-[1650px] mx-auto px-8 lg:px-12 min-h-screen flex items-center justify-center pt-36 pb-20">
-
-  <div className="flex flex-col lg:flex-row items-center justify-center gap-12 w-full">
-
-        {/* LEFT */}
-
-        <motion.div
-  initial={{ opacity: 0, x: -80 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.8 }}
-  className="w-full lg:w-1/2 max-w-[540px] ml-10 lg:ml-32"
->
-
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 text-red-700 font-semibold">
-
-            🚀 AI Powered Programming Learning
-
-          </span>
-
-          <h1 className="mt-8 text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight text-black">
-
-            Master
-
-            <br />
-
-            Programming
-
-            <br />
-
-            <span className="text-red-700">
-
-              with AI
-
-            </span>
-
-          </h1>
-
-          <p className="mt-8 max-w-xl text-lg md:text-xl text-gray-600 leading-9">
-
-            Create intelligent programming tests,
-            discover weak topics,
-            receive AI explanations,
-            and improve every day.
-
-          </p>
-
-          <div className="flex flex-wrap gap-5 mt-10">
-
- <Link
-  to={user ? "/dashboard" : "/auth"}
-  className="px-8 py-4 rounded-2xl bg-gradient-to-r from-red-700 to-red-500 text-white font-semibold shadow-xl transition-all hover:-translate-y-1"
->
-  🚀 Start Learning
-</Link>
-<Link
-  to={user ? "/dashboard" : "/auth"}
-  className="px-8 py-4 rounded-2xl bg-slate-900 hover:bg-black text-white font-semibold shadow-xl transition-all hover:-translate-y-1"
->
-  📊 Go to Dashboard
-</Link>
-
-  <button
-  onClick={async () => {
-    const installed = await install();
-
-    if (!installed) {
-      setShowInstallGuide(true);
-    }
-  }}
-  className="
-    px-8 py-4 rounded-2xl bg-white border border-gray-300
-    hover:border-red-600 hover:text-red-700
-    font-semibold transition-all hover:-translate-y-1 shadow-sm
-  "
->
-  📲 Install App
-</button>
+  const [showInstallGuide, setShowInstallGuide] = useState(false);
   
+  // Dummy data if context is missing
+  const { user } = useAuth();
+const { install } = usePWAInstall();
+  return (
+    <section className="relative h-screen w-full flex items-center justify-center bg-white overflow-hidden">
+      {/* Background Blobs */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+        <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-red-50 rounded-full blur-[120px] opacity-60" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-slate-50 rounded-full blur-[120px] opacity-60" />
+      </div>
 
-</div>
-
-          <div className="flex items-center gap-6 mt-12">
-
-            
-
-            <span className="text-gray-600">
-
-              <div className="flex flex-wrap gap-4 mt-12">
-
-  <span className="px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium">
-    🤖 Google Gemini AI
-  </span>
-
-  <span className="px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-medium">
-    📱 Progressive Web App
-  </span>
-
-  <span className="px-4 py-2 rounded-full bg-purple-100 text-purple-700 font-medium">
-    💻 Multiple Programming Languages
-  </span>
-
-</div>
-
-            </span>
-
+      <div className="w-full max-w-[1600px] mx-auto px-12 grid lg:grid-cols-2 gap-24 items-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col justify-center"
+        >
+          <div className="inline-flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full border border-red-100 mb-8">
+            <Sparkles className="w-4 h-4 text-[#ef4444]" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#ef4444]">AI Powered Programming Learning</span>
           </div>
 
+          <h1 className="text-6xl md:text-7xl xl:text-8xl font-bold tracking-tight text-[#0f172a] leading-[0.95] mb-8">
+            Master <br /> Programming <br />
+            <span className="text-[#ef4444]">with AI</span>
+          </h1>
+
+          <p className="text-xl text-slate-500 leading-relaxed max-w-xl mb-12">
+            Create intelligent tests, discover weak topics, receive AI explanations, and track your growth on a modern, high-performance platform.
+          </p>
+{/* Floating Quick Access Box */}
+
+<div className="mb-10 w-full max-w-[650px]">
+  <div className="bg-white border border-slate-200 rounded-[2rem] p-6 shadow-xl">
+
+  <h3 className="text-lg font-bold text-slate-900 mb-5 text-center">
+    Quick Start
+  </h3>
+
+    <div className="grid grid-cols-3 gap-4">
+
+  {/* Dashboard */}
+
+  <Link to={user ? "/dashboard" : "/auth"} className="w-full">
+    <button className="h-32 w-full bg-slate-50 border border-slate-200 rounded-2xl hover:border-red-500 hover:bg-red-50 transition-all flex flex-col items-center justify-center">
+      <p className="text-2xl mb-2">🚀</p>
+      <p className="font-bold text-sm">
+        {user ? "Dashboard" : "Let's Start"}
+      </p>
+      <p className="text-xs text-slate-500 mt-1">
+        (Dashboard)
+      </p>
+    </button>
+  </Link>
+
+  {/* Install */}
+
+  <button
+    onClick={async () => {
+      const installed = await install();
+
+      if (!installed) {
+        setShowInstallGuide(true);
+      }
+    }}
+    className="h-32 w-full bg-slate-50 border border-slate-200 rounded-2xl hover:border-red-500 hover:bg-red-50 transition-all flex flex-col items-center justify-center"
+  >
+    <p className="text-2xl mb-2">📲</p>
+    <p className="font-bold text-sm">Install App</p>
+    <p className="text-xs text-slate-500 mt-1">(PWA)</p>
+  </button>
+
+  {/* Create Test */}
+
+  <Link to={user ? "/create-test" : "/auth"} className="w-full">
+    <button className="h-32 w-full bg-slate-50 border border-slate-200 rounded-2xl hover:border-red-500 hover:bg-red-50 transition-all flex flex-col items-center justify-center">
+      <p className="text-2xl mb-2">✨</p>
+      <p className="font-bold text-sm">Create Test</p>
+      <p className="text-xs text-slate-500 mt-1">(AI Test)</p>
+    </button>
+  </Link>
+
+</div>
+
+  </div>
+</div>
+          
         </motion.div>
 
-        {/* RIGHT */}
+        {/* Right Card UI */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative hidden lg:flex justify-center w-full"
+        >
+          <div className="w-full max-w-[560px] bg-white border border-slate-200 rounded-[3rem] p-10 shadow-2xl relative z-10">
+            <div className="flex items-center gap-4 mb-10">
+              <img
+  src="/icon-512.png"
+  alt="StudyFlux"
+  className="h-14 w-14 rounded-2xl object-cover"
+/>
+              <div>
+                <h3 className="text-2xl font-bold text-[#0f172a]">StudyFlux</h3>
+                <p className="text-slate-400 font-medium text-sm">Session Configurator</p>
+              </div>
+            </div>
 
-        {/* RIGHT */}
+            <div className="space-y-5">
+              {['Python', 'Advanced', '20 Questions'].map((val, i) => (
+                <div key={i} className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl font-bold text-slate-700">
+                  {val}
+                </div>
+              ))}
+            </div>
 
-<motion.div
-  initial={{ opacity: 0, x: 80 }}
-  animate={{
-    opacity: 1,
-    x: 0,
-    y: [0, -10, 0],
-  }}
-  transition={{
-    opacity: { duration: 0.8 },
-    x: { duration: 0.8 },
-    y: {
-      duration: 5,
-      repeat: Infinity,
-      ease: "easeInOut",
-    },
-  }}
-  className="w-full lg:w-1/2 flex justify-end lg:pr-24"
+            <div className="mt-8 space-y-3">
+              {['AI Generated Questions', 'Detailed Explanations', 'Weak Topic Analysis'].map(feat => (
+                <div key={feat} className="flex items-center gap-2 text-sm font-bold text-green-600">
+                  <CheckCircle2 className="w-4 h-4" /> {feat}
+                </div>
+              ))}
+            </div>
+
+            <Link
+  to={user ? "/create-test" : "/auth"}
+  className="block mt-8"
 >
-  <div className="w-full max-w-[600px] bg-white/55 backdrop-blur-3xl rounded-[38px] border border-white/80 shadow-[0_25px_70px_rgba(255,80,80,0.10)] p-10">
-
-    {/* Header */}
-
-    <div className="flex items-center gap-4 mb-8">
-
-      <img
-        src={logo}
-        alt="StudyFlux"
-        className="w-14 h-14 rounded-xl"
-      />
-
-      <div>
-        <h3 className="text-3xl font-bold text-black">
-          StudyFlux
-        </h3>
-
-        <p className="text-gray-500">
-          Create Your AI Test
-        </p>
+              <button className="w-full py-5 rounded-[2rem] bg-[#ef4444] text-white font-bold text-lg shadow-lg hover:bg-red-600 transition-all">
+                Generate AI Test
+              </button>
+            </Link>
+          </div>
+        </motion.div>
       </div>
 
-    </div>
-
-    {/* Form Preview */}
-
-    <div className="space-y-5">
-
-      <div>
-        <label className="text-sm text-gray-500">
-          Programming Language
-        </label>
-
-        <div className="mt-2 rounded-xl border border-gray-200 p-4 bg-white">
-          Python
+      {showInstallGuide && (
+        <div className="fixed inset-0 bg-[#0f172a]/40 backdrop-blur-sm flex items-center justify-center z-[1000] p-6">
+          <div className="bg-white rounded-[3rem] p-10 max-w-md w-full shadow-2xl text-center">
+            <h2 className="text-3xl font-bold text-[#0f172a] mb-6">Install App</h2>
+            <p className="text-slate-500 mb-8">Open your browser menu and select "Add to Home Screen" to install StudyFlux.</p>
+            <button onClick={() => setShowInstallGuide(false)} className="w-full bg-[#0f172a] text-white py-4 rounded-2xl font-bold">
+              Got it
+            </button>
+          </div>
         </div>
-      </div>
-
-      <div>
-        <label className="text-sm text-gray-500">
-          Difficulty
-        </label>
-
-        <div className="mt-2 rounded-xl border border-gray-200 p-4 bg-white">
-          Medium
-        </div>
-      </div>
-
-      <div>
-        <label className="text-sm text-gray-500">
-          Questions
-        </label>
-
-        <div className="mt-2 rounded-xl border border-gray-200 p-4 bg-white">
-          20 Questions
-        </div>
-      </div>
-
-    </div>
-
-    {/* Features */}
-
-    <div className="mt-8 space-y-3">
-
-      <p className="text-green-600 font-medium">
-        ✅ AI Generated Questions
-      </p>
-
-      <p className="text-green-600 font-medium">
-        ✅ Detailed AI Explanations
-      </p>
-
-      <p className="text-green-600 font-medium">
-        ✅ Weak Topic Analysis
-      </p>
-
-    </div>
-
-    {/* Button */}
-
-    <Link to={user ? "/create-test" : "/auth"}>
-  <button
-    className="w-full mt-8 py-4 rounded-2xl bg-gradient-to-r from-red-700 to-red-500 text-white font-bold shadow-lg hover:scale-[1.02] transition"
-  >
-    Generate AI Test
-  </button>
-</Link>
-
-  </div>
-</motion.div>
-
-      </div>
-</div>{showInstallGuide && (
-  <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[999] px-6">
-
-    <div className="bg-white rounded-[32px] p-8 max-w-md w-full shadow-2xl">
-
-      <h2 className="text-3xl font-black text-black text-center">
-        📲 Install StudyFlux
-      </h2>
-
-      <p className="text-gray-600 mt-4 text-center">
-        Follow these steps to install the app:
-      </p>
-
-      <div className="mt-8 space-y-4">
-
-        <div className="bg-gray-100 p-4 rounded-2xl">
-          <p className="font-semibold text-black">
-            1️⃣ Tap the ⋮ menu in Chrome.
-          </p>
-        </div>
-
-        <div className="bg-gray-100 p-4 rounded-2xl">
-          <p className="font-semibold text-black">
-            2️⃣ Select "Add to Home screen" or "Install app".
-          </p>
-        </div>
-
-        <div className="bg-gray-100 p-4 rounded-2xl">
-          <p className="font-semibold text-black">
-            3️⃣ Tap "Install".
-          </p>
-        </div>
-
-      </div>
-
-      <button
-        onClick={() => setShowInstallGuide(false)}
-        className="mt-8 w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded-2xl font-bold"
-      >
-        Got it 👍
-      </button>
-
-    </div>
-
-  </div>
-)}
+      )}
     </section>
   );
 }

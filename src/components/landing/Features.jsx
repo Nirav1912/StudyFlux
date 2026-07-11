@@ -1,177 +1,74 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import {
-  FaRobot,
-  FaChartLine,
-  FaBrain,
-  FaLightbulb,
-  FaLaptopCode,
-  FaMobileAlt,
-} from "react-icons/fa";
+import { 
+  Bot, 
+  LineChart, 
+  BrainCircuit, 
+  Zap, 
+  Terminal, 
+  Smartphone,
+  ArrowRight
+} from "lucide-react";
 
 const features = [
-  {
-    icon: <FaRobot />,
-    title: "AI Test Generation",
-    tag: "Powered by Gemini",
-    description:
-      "Generate personalized programming tests based on your selected language and difficulty level using AI.",
-  },
-  {
-    icon: <FaChartLine />,
-    title: "Progress Tracking",
-    tag: "Learning Analytics",
-    description:
-      "Track completed tests, monitor scores, and measure your programming improvement over time.",
-  },
-  {
-    icon: <FaBrain />,
-    title: "Weak Topic Detection",
-    tag: "AI Insights",
-    description:
-      "Identify concepts that need more practice based on your previous test performance.",
-  },
-  {
-    icon: <FaLightbulb />,
-    title: "AI Explanations",
-    tag: "Learn Faster",
-    description:
-      "Receive clear AI-generated explanations for every question after completing your test.",
-  },
-  {
-    icon: <FaLaptopCode />,
-    title: "Multiple Languages",
-    tag: "Programming",
-    description:
-      "Practice C, C++, Java, Python, JavaScript and more as additional languages are added.",
-  },
-  {
-    icon: <FaMobileAlt />,
-    title: "Progressive Web App",
-    tag: "Install Anywhere",
-    description:
-      "Install StudyFlux on desktop or mobile for a fast, app-like learning experience.",
-  },
+  { icon: <Bot />, title: "AI Test Generation", tag: "Gemini Pro", desc: "Generate personalized programming tests based on your selected language and level." },
+  { icon: <LineChart />, title: "Analytics", tag: "Live Stats", desc: "Track tests, monitor scores, and measure your improvement over time with visual data." },
+  { icon: <BrainCircuit />, title: "Weak Topics", tag: "AI Insights", desc: "Automatically identify concepts that need more practice based on performance." },
+  { icon: <Zap />, title: "AI Explanations", tag: "Learn Faster", desc: "Receive crystal clear AI-generated explanations for every question instantly." },
+  { icon: <Terminal />, title: "Multi-Language", tag: "Coding", desc: "Practice C, C++, Java, Python, and JavaScript with more being added monthly." },
+  { icon: <Smartphone />, title: "PWA Experience", tag: "App Mode", desc: "Install StudyFlux on any device for a fast, desktop or mobile app experience." },
 ];
 
 export default function Features() {
   return (
-    <section
-      id="features"
-      className="relative overflow-hidden py-24 bg-gradient-to-b from-white via-red-50/20 to-gray-50"
+    <section id="features" className="py-24 bg-white w-full">
+      <div className="w-full max-w-7xl mx-auto px-8 xl:px-12">
+
+  <div className="flex flex-col items-center justify-center text-center mb-20">
+
+    <span className="text-[#ef4444] font-bold uppercase tracking-[0.3em] text-xs">
+      Features
+    </span>
+
+    <h2 className="mt-4 text-5xl md:text-6xl font-bold tracking-tight text-[#0f172a]">
+      Become a better programmer
+    </h2>
+
+    <p className="mt-6 text-xl text-slate-500 leading-relaxed max-w-3xl">
+      StudyFlux combines AI-powered generation and personalized analytics into one modern platform.
+    </p>
+
+  </div>
+
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+  {features.map((f, i) => (
+    <motion.div
+      key={f.title}
+      whileHover={{ y: -5 }}
+      className="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm hover:border-red-200 transition-all flex flex-col items-center text-center group"
     >
-      {/* Background Glow */}
-
-      <div className="absolute top-20 left-0 w-[500px] h-[500px] bg-red-200/20 rounded-full blur-[180px]" />
-
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-200/20 rounded-full blur-[200px]" />
-
-      <div className="relative max-w-[1400px] mx-auto pl-20 pr-8 lg:pl-32 lg:pr-12">
-
-        {/* Heading */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto lg:translate-x-100"
-        >
-          <p className="uppercase tracking-[6px] text-red-600 font-bold">
-            WHY STUDYFLUX
-          </p>
-
-          <h2 className="mt-5 text-3xl md:text-3xl lg:text-[52px] font-black text-gray-900 leading-[1.15]">
-  Everything you need
-  <br />
-  to become a better programmer
-</h2>
-
-          <p className="mt-5 max-w-2xl mx-auto text-lg text-gray-500 leading-8">
-  StudyFlux combines AI-powered test generation, personalized
-  explanations, progress analytics, and adaptive learning into one
-  modern platform.
-</p>
-        </motion.div>
-
-        {/* Cards */}
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-14 lg:translate-x-14">
-
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
-              whileHover={{
-                y: -10,
-                scale: 1.02,
-              }}
-              className="relative overflow-hidden min-h-[220px] rounded-[30px] bg-white/70 backdrop-blur-xl border border-white/70 shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-6 transition-all duration-500 hover:shadow-[0_30px_80px_rgba(239,68,68,.18)]"
-            >
-              {/* Number */}
-
-              <span className="absolute top-6 right-6 text-5xl font-black text-gray-200">
-                0{index + 1}
-              </span>
-
-              {/* Icon */}
-
-              <div className="w-14 h-14 text-xl rounded-2xl bg-gradient-to-br from-red-100 to-red-50 flex items-center justify-center text-red-700 text-3xl shadow-md">
-                {feature.icon}
-              </div>
-
-              {/* Tag */}
-
-              <span className="inline-block mt-8 px-2.5 py-1 rounded-full bg-red-100 text-red-700 text-sm font-semibold">
-                {feature.tag}
-              </span>
-
-              {/* Title */}
-
-              <h3 className="mt-5 text-xl font-bold text-gray-900">
-                {feature.title}
-              </h3>
-
-              {/* Description */}
-
-              <p className="mt-5 text-gray-600 text-[15px] leading-7">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* CTA */}
-
-        <motion.div
-  initial={{ opacity: 0, y: 50 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  className="mt-32 lg:translate-x-15"
->
-          <div className="rounded-[36px] bg-white/70 backdrop-blur-2xl border border-white/70 shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-14 text-center">
-
-            <h3 className="text-3xl font-black text-gray-900">
-              Ready to improve your programming skills?
-            </h3>
-
-            <p className="mt-5 text-xl text-gray-500">
-              Start learning with AI-powered programming tests and personalized
-              feedback.
-            </p>
-
-            <Link to="/create-test">
-  <button className="mt-10 px-10 py-4 rounded-2xl bg-gradient-to-r from-red-700 to-red-500 text-white text-lg font-bold shadow-xl hover:scale-105 transition-all">
-    Start Learning →
-  </button>
-</Link>
-
-          </div>
-        </motion.div>
-
+      <div className="h-16 w-16 bg-slate-50 rounded-2xl flex items-center justify-center text-[#ef4444] mb-8 border border-slate-100 group-hover:scale-110 transition-transform">
+        {f.icon}
       </div>
-    </section>
+
+      <span className="text-[10px] font-black uppercase tracking-widest text-[#ef4444] bg-red-50 px-3 py-1 rounded-full mb-4">
+        {f.tag}
+      </span>
+
+      <h3 className="text-2xl font-bold text-[#0f172a] mb-4">
+        {f.title}
+      </h3>
+
+      <p className="text-slate-500 leading-relaxed">
+        {f.desc}
+      </p>
+    </motion.div>
+  ))}
+</div>
+
+</div>
+
+</section>
   );
 }

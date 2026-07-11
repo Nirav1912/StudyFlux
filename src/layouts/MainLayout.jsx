@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
-
+import { House } from "lucide-react";
 import {
   LayoutDashboard,
   PlusCircle,
@@ -42,6 +42,11 @@ useEffect(() => {
   const hideNavbar = location.pathname === "/test" || location.pathname === "/result";
 
   const navItems = [
+    {
+  path: "/",
+  label: "Home",
+  icon: House,
+},
     { path: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { path: "/create-test", label: "Create Test", icon: PlusCircle },
     { path: "/history", label: "History", icon: History },

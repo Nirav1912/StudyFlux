@@ -1,127 +1,61 @@
-import { motion } from "framer-motion";
-import {
-  FaUserPlus,
-  FaMagic,
-  FaLaptopCode,
-  FaBrain,
-  FaChartLine,
-} from "react-icons/fa";
-
-const steps = [
-  {
-    icon: <FaUserPlus />,
-    title: "Create Your Account",
-    description:
-      "Sign up or log in to access your personalized programming learning dashboard.",
-  },
-  {
-    icon: <FaMagic />,
-    title: "Generate an AI Test",
-    description:
-      "Choose your programming language, difficulty level, and number of questions.",
-  },
-  {
-    icon: <FaLaptopCode />,
-    title: "Complete the Test",
-    description:
-      "Answer AI-generated programming questions designed for your selected level.",
-  },
-  {
-    icon: <FaBrain />,
-    title: "Receive AI Analysis",
-    description:
-      "View your score, explanations, and weak topics after completing the test.",
-  },
-  {
-    icon: <FaChartLine />,
-    title: "Track Your Progress",
-    description:
-      "Review previous tests and monitor your improvement over time.",
-  },
-];
-
 export default function HowItWorks() {
   return (
-    <section id="how" className="py-32 bg-white">
+    <section id="how-it-works" className="py-24 bg-white">
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-8 flex flex-col items-center">
 
-        <div className="text-center max-w-3xl mx-auto lg:translate-x-100">
+        {/* Heading */}
 
-          <span className="px-4 py-2 rounded-full bg-red-100 text-red-700 font-semibold">
-            Simple Workflow
-          </span>
+        <span className="text-[#ef4444] font-bold uppercase tracking-[0.3em] text-xs">
+          Workflow
+        </span>
 
-          <h2 className="mt-6 text-5xl font-black">
-            How StudyFlux Works
-          </h2>
+        <h2 className="mt-4 text-5xl md:text-6xl font-bold text-center text-slate-900">
+          How It Works
+        </h2>
 
-          <p className="mt-6 text-xl text-gray-500">
-            StudyFlux guides you from creating a test to improving your
-            programming skills with AI-powered insights.
-          </p>
+        <p className="mt-6 text-xl text-slate-500 text-center max-w-2xl">
+          Three simple steps to master programming with AI.
+        </p>
 
-        </div>
+        {/* Cards */}
 
-        <div className="mt-24 relative max-w-[1200px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 w-full">
 
-          {/* Vertical Line */}
+          <div className="bg-slate-50 p-8 rounded-3xl text-center flex flex-col items-center">
+            <div className="text-5xl mb-4">1️⃣</div>
 
-          <div className="absolute left-[65%] top-0 bottom-0 w-1 bg-red-100 hidden lg:block -translate-x-1/2"></div>
+            <h3 className="text-2xl font-bold">
+              Choose
+            </h3>
 
-          <div className="space-y-14">
+            <p className="mt-4 text-slate-500">
+              Select your language and difficulty level.
+            </p>
+          </div>
 
-            {steps.map((step, index) => (
+          <div className="bg-slate-50 p-8 rounded-3xl text-center flex flex-col items-center">
+            <div className="text-5xl mb-4">2️⃣</div>
 
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                className={`flex items-center ${
-                  index % 2 === 0
-                    ? "lg:flex-row"
-                    : "lg:flex-row-reverse"
-                } flex-col gap-10`}
-              >
+            <h3 className="text-2xl font-bold">
+              Practice
+            </h3>
 
-                {/* Card */}
+            <p className="mt-4 text-slate-500">
+              Solve AI-generated questions.
+            </p>
+          </div>
 
-                <div
-  className={`lg:w-5/12 bg-white border border-gray-200 rounded-3xl shadow-xl p-8 transition-all duration-300 ${
-    index % 2 === 0
-      ? "lg:translate-x-34"
-      : "lg:translate-x-52"
-  }`}
->
+          <div className="bg-slate-50 p-8 rounded-3xl text-center flex flex-col items-center">
+            <div className="text-5xl mb-4">3️⃣</div>
 
-  <div className="w-16 h-16 rounded-2xl bg-red-100 flex items-center justify-center text-red-700 text-3xl">
-    {step.icon}
-  </div>
+            <h3 className="text-2xl font-bold">
+              Improve
+            </h3>
 
-  <h3 className="mt-8 text-2xl font-bold">
-    {step.title}
-  </h3>
-
-  <p className="mt-5 text-gray-500 leading-8">
-    {step.description}
-  </p>
-
-</div>
-
-                {/* Step Number */}
-
-                <div className="hidden lg:flex w-16 h-16 rounded-full bg-red-700 text-white font-bold text-xl items-center justify-center shadow-xl z-10 lg:translate-x-45">
-  {index + 1}
-</div>
-
-                <div className="lg:w-3/12"></div>
-
-              </motion.div>
-
-            ))}
-
+            <p className="mt-4 text-slate-500">
+              Track progress and weak topics.
+            </p>
           </div>
 
         </div>
