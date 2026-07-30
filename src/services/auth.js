@@ -1,36 +1,33 @@
-import { supabase } from "../lib/supabase";
+import { login as apiLogin, register as apiRegister } from "../api/auth";
 
 export async function register(name, email, password) {
-  const { data, error } = await supabase.auth.signUp({
+  const res = await apiRegister({
+    name,
     email,
     password,
-    options: {
-      data: {
-        full_name: name,
-      },
-    },
   });
 
-  return { data, error };
+  return res.data;
 }
 
 export async function login(email, password) {
-  const { data, error } = await supabase.auth.signInWithPassword({
+  const res = await apiLogin({
     email,
     password,
   });
 
-  return { data, error };
+  localStorage.setItem("token", res.data.token);
+  localStorage.setItem("user", JSON.stringify(res.data.user));
+
+  return res.data;
 }
 
-export async function logout() {
-  await supabase.auth.signOut();
+export function logout() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
 }
 
-export async function getCurrentUser() {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  return user;
+export function getCurrentUser() {
+  const user = localStorage.getItem("user");
+  return user ? JSON.parse(user) : null;
 }

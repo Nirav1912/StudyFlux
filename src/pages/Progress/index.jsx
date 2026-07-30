@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { getUserResults } from "../../api/testApi";
+import { getUserTests } from "../../api/testApi";
 import { 
   BarChart3, 
   TrendingUp, 
@@ -30,8 +30,8 @@ export default function Progress() {
     async function load() {
       if (!user) return;
       try {
-        const data = await getUserResults(user.id);
-        setResults(data || []);
+        const res = await getUserTests(user.id);
+setResults(res.data.tests || []);
       } catch (err) {
         console.error(err);
       }
@@ -41,21 +41,30 @@ export default function Progress() {
 
   // Logic Preserved Exactly
   const chartData = results
-    .slice()
-    .reverse()
-    .map((item, index) => ({
-      test: `Test ${index + 1}`,
-      accuracy: item.accuracy,
-    }));
+  .slice()
+  .reverse()
+  .map((item, index) => ({
+    test: `Test ${index + 1}`,
+    accuracy: Number(item.percentage),
+  }));
 
   const testsTaken = results.length;
-  const avgAccuracy = testsTaken > 0
-    ? Math.round(results.reduce((sum, r) => sum + r.accuracy, 0) / testsTaken)
+  const avgAccuracy =
+  testsTaken > 0
+    ? Math.round(
+        results.reduce(
+          (sum, r) => sum + Number(r.percentage),
+          0
+        ) / testsTaken
+      )
     : 0;
   const bestScore = testsTaken > 0
     ? Math.max(...results.map((r) => r.score))
     : 0;
-  const totalQuestions = results.reduce((sum, r) => sum + r.total, 0);
+ const totalQuestions = results.reduce(
+  (sum, r) => sum + r.total_questions,
+  0
+);
   const totalCorrect = results.reduce((sum, r) => sum + r.score, 0);
 
   return (

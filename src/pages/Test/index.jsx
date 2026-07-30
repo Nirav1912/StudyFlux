@@ -73,15 +73,23 @@ export default function Test() {
       }
     });
 
-    const result = {
-      user_id: user.id,
-      language: config.language,
-      difficulty: config.difficulty,
-      score,
-      total: questions.length,
-      accuracy: Math.round((score / questions.length) * 100),
-      completed_at: new Date().toISOString(),
-    };
+    const currentUser = user || JSON.parse(localStorage.getItem("user"));
+
+if (!currentUser) {
+  alert("Please login first.");
+  navigate("/auth");
+  return;
+}
+
+const result = {
+  user_id: currentUser.id,
+  language: config.language,
+  difficulty: config.difficulty,
+  duration: config.duration,
+  total_questions: questions.length,
+  score: score,
+  percentage: Math.round((score / questions.length) * 100),
+};
 
     const analysis = analyzePerformance(questions, answers);
     

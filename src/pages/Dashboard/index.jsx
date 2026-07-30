@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { getUserResults } from "../../api/testApi";
+import { getUserTests } from "../../api/testApi";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import { 
@@ -17,16 +17,17 @@ export default function Dashboard() {
     async function load() {
       if (!user) return;
       try {
-        const data = await getUserResults(user.id);
-        setResults(data || []);
+        const res = await getUserTests(user.id);
+
+setResults(res.data.tests || []);
       } catch (err) { console.error(err); }
     }
     load();
   }, [user]);
 
-  const averageAccuracy = results.length ? Math.round(results.reduce((sum, r) => sum + r.accuracy, 0) / results.length) : 0;
+  const averageAccuracy = results.length ? Math.round(results.reduce((sum, r) => sum + Number(r.percentage), 0) / results.length) : 0;
   const bestScore = results.length ? Math.max(...results.map(r => r.score)) : 0;
-  const chartData = results.slice(0, 7).reverse().map((r, i) => ({ name: i, accuracy: r.accuracy }));
+  const chartData = results.slice(0, 7).reverse().map((r, i) => ({ name: i, accuracy: Number(r.percentage) }));
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
@@ -118,9 +119,9 @@ export default function Dashboard() {
                       <div className="flex items-center gap-8">
                          <div className="text-right">
                             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Score</p>
-                            <p className="text-sm font-black text-slate-900">{test.score}/{test.total}</p>
+                            <p className="text-sm font-black text-slate-900">{test.score}/{test.total_questions}</p>
                          </div>
-                         <div className="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-black">{test.accuracy}%</div>
+                         <div className="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-black">{test.percentage}%</div>
                          <ChevronRight size={18} className="text-slate-300" />
                       </div>
                     </div>

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login, register } from "../../services/auth";
-import { supabase } from "../../lib/supabase";
+import { login, register } from "../../api/auth";
+import { useAuth } from "../../context/AuthContext";
+
 import {
   showSuccess,
   showWarning,
@@ -10,6 +11,7 @@ import {
 
 export default function Auth() {
   const navigate = useNavigate();
+const { loginUser } = useAuth();
 
   const [tab, setTab] = useState("login");
 
@@ -22,97 +24,61 @@ export default function Auth() {
   const [password, setPassword] = useState("");
 
   async function handleLogin() {
-    if (!email || !password) {
-      showWarning("Please fill all fields");
-      return;
-    }
-
-    try {
-      setLoading(true);
-
-      const { error } = await login(email, password);
-
-      if (error) {
-        showError(error.message);
-        return;
-      }
-
-      navigate("/dashboard");
-    } catch (err) {
-      alert(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function handleRegister() {
-    if (!name || !email || !password) {
-      showWarning("Please fill all fields");
-      return;
-    }
-    async function handleForgotPassword() {
-  if (!email) {
-    showWarning("Please enter your email first");
-    return;
-  }
-
-  const { error } = await supabase.auth.resetPasswordForEmail(
-    email,
-    {
-      redirectTo: "http://localhost:5173/reset-password",
-    }
-  );
-
-  if (error) {
-    showError(error.message);
-  } else {
-    showSuccess("Password reset email sent 📩");
-  }
-}
-
-    try {
-      setLoading(true);
-
-      const { error } = await register(name, email, password);
-
-      if (error) {
-        showError(error.message);
-        return;
-      }
-
-      showSuccess("🎉 Account created successfully!");
-
-      navigate("/dashboard");
-    } catch (err) {
-      alert(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }
-async function handleForgotPassword() {
-  if (!email) {
-    showWarning("Please enter your email first");
+  if (!email || !password) {
+    showWarning("Please fill all fields");
     return;
   }
 
   try {
-    const { error } = await supabase.auth.resetPasswordForEmail(
+    setLoading(true);
+
+    const res = await login({
       email,
-      {
-        redirectTo: "http://localhost:5173/reset-password",
-      }
-    );
+      password,
+    });
 
-    if (error) {
-      showError(error.message);
-      return;
-    }
+    loginUser(res.data.user, res.data.token);
+    showSuccess("Login Successful 🎉");
 
-    showSuccess("Password reset email sent 📩");
+    navigate("/dashboard");
   } catch (err) {
-    showError(err.message);
+    showError(
+      err.response?.data?.message || "Login Failed"
+    );
+  } finally {
+    setLoading(false);
   }
 }
+
+  async function handleRegister() {
+  if (!name || !email || !password) {
+    showWarning("Please fill all fields");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    await register({
+      name,
+      email,
+      password,
+    });
+
+    showSuccess("🎉 Account created!");
+
+    setTab("login");
+  } catch (err) {
+    showError(
+      err.response?.data?.message || "Registration Failed"
+    );
+  } finally {
+    setLoading(false);
+  }
+}
+
+
+  
   return (
    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#fff4f4] via-[#fdf8f2] to-[#fff0f7] flex items-center justify-center px-5">
         {/* Background glow */}
@@ -184,11 +150,11 @@ async function handleForgotPassword() {
 {tab === "login" && (
   <div className="flex justify-end mb-5">
     <button
-      onClick={handleForgotPassword}
-      className="text-red-500 hover:text-red-700 text-sm font-semibold"
-    >
-      Forgot Password?
-    </button>
+  onClick={() => navigate("/forgot-password")}
+  className="text-red-500 hover:text-red-700 text-sm font-semibold"
+>
+  Forgot Password?
+</button>
   </div>
 )}
 

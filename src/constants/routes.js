@@ -16,7 +16,7 @@ PROFILE:"/profile",
 
 SETTINGS:"/settings",
 
-FLASHCARDS:"/flashcards",
+
 
 ANALYTICS:"/analytics",
 

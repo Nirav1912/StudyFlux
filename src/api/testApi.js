@@ -1,24 +1,11 @@
-import { supabase } from "../lib/supabase";
+import axios from "axios";
 
-export async function saveTestResult(result) {
-  const { data, error } = await supabase
-    .from("results")
-    .insert(result)
-    .select();
+const API = "http://localhost:5000/api/tests";
 
-  if (error) throw error;
+export const saveTestResult = (data) => {
+  return axios.post(`${API}/save`, data);
+};
 
-  return data;
-}
-
-export async function getUserResults(userId) {
-  const { data, error } = await supabase
-    .from("results")
-    .select("*")
-    .eq("user_id", userId)
-    .order("completed_at", { ascending: false });
-
-  if (error) throw error;
-
-  return data;
-}
+export const getUserTests = (userId) => {
+  return axios.get(`${API}/${userId}`);
+};

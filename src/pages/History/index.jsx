@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { getUserResults } from "../../api/testApi";
+import { getUserTests } from "../../api/testApi";
 import { useAuth } from "../../context/AuthContext";
 import { 
   History as HistoryIcon, 
@@ -23,8 +23,8 @@ export default function History() {
     async function load() {
       if (!user) return;
       try {
-        const data = await getUserResults(user.id);
-        setResults(data || []);
+        const res = await getUserTests(user.id);
+setResults(res.data.tests || []);
       } catch (err) {
         console.error(err);
       }
@@ -35,10 +35,10 @@ export default function History() {
   // Logic Preserved Exactly
   const filteredResults = useMemo(() => {
     return results.filter((test) =>
-      "AI Programming Test"
-        .toLowerCase()
-        .includes(search.toLowerCase())
-    );
+  (test.language || "")
+    .toLowerCase()
+    .includes(search.toLowerCase())
+);
   }, [results, search]);
 
   const totalTests = results.length;
@@ -46,7 +46,7 @@ export default function History() {
   const averageAccuracy =
     results.length > 0
       ? Math.round(
-          results.reduce((sum, test) => sum + test.accuracy, 0) /
+          results.reduce((sum, test) => sum + Number(test.percentage), 0) /
             results.length
         )
       : 0;
@@ -159,8 +159,8 @@ export default function History() {
                     <p className="text-xl font-black text-slate-900 tracking-tighter leading-none">
                       {test.score} <span className="text-xs text-slate-400 font-normal">/ {test.total}</span>
                     </p>
-                    <p className={`text-xs font-black uppercase mt-1 tracking-widest ${getColor(test.accuracy)}`}>
-                      {test.accuracy}% Accuracy
+                    <p className={`text-xs font-black uppercase mt-1 tracking-widest ${getColor(Number(test.percentage))}`}>
+                     {test.percentage}% Accuracy
                     </p>
                   </div>
                   <button className="p-2.5 rounded-xl bg-slate-50 text-slate-400 hover:bg-red-500 hover:text-white transition-all group-hover:translate-x-1">

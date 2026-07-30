@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../../lib/supabase";
 import { 
   Settings as SettingsIcon, 
   Bell, 
@@ -24,8 +23,10 @@ export default function Settings() {
   // Logic Preserved Exactly
   async function logout() {
     localStorage.removeItem("guest");
-    await supabase.auth.signOut();
-    navigate("/auth");
+    localStorage.removeItem("token");
+localStorage.removeItem("user");
+window.location.href = "/";
+navigate("/auth");
   }
 
   // Custom Toggle Component for the SaaS look
@@ -174,7 +175,7 @@ export default function Settings() {
               </div>
               <div className="flex flex-col items-center text-center gap-2 text-sm">
                 <span className="text-slate-400 font-medium tracking-wide uppercase text-[10px]">Database</span>
-                <span className="text-slate-900 font-bold">Supabase Realtime</span>
+                <span className="text-slate-900 font-bold">MySQL + Express API</span>
               </div>
             </div>
             <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">

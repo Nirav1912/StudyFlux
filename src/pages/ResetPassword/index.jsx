@@ -1,22 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../../lib/supabase";
 
 export default function ResetPassword() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  async function updatePassword() {
-    const { error } = await supabase.auth.updateUser({
-      password,
-    });
-
-    if (error) {
-      alert(error.message);
-      return;
-    }
-
-    alert("Password updated successfully 🎉");
+  function updatePassword() {
+    alert("Password reset with MySQL backend will be added later.");
     navigate("/auth");
   }
 

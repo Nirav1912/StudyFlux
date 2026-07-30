@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../lib/supabase";
+
 import { House } from "lucide-react";
 import {
   LayoutDashboard,
@@ -27,7 +27,10 @@ const navigate = useNavigate();
 
 async function logout() {
   localStorage.removeItem("guest");
-  await supabase.auth.signOut();
+  const handleLogout = () => {
+  localStorage.removeItem("token");
+  navigate("/login");
+};
   navigate("/auth");
 }
 useEffect(() => {

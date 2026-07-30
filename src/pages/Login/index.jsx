@@ -1,6 +1,34 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/ui/Button";
+import { login } from "../api/auth";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { loginUser } = useAuth();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      const res = await login({
+        email,
+        password,
+      });
+
+      loginUser(
+        res.data.user,
+        res.data.token
+      );
+
+      navigate("/dashboard");
+    } catch (err) {
+      alert(err.response?.data?.message || "Login Failed");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center px-5">
 
@@ -21,16 +49,23 @@ export default function Login() {
         <input
           type="email"
           placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-white mb-4 outline-none"
         />
 
         <input
           type="password"
           placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           className="w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-white mb-6 outline-none"
         />
 
-        <Button className="w-full">
+        <Button
+          className="w-full"
+          onClick={handleLogin}
+        >
           Login
         </Button>
 

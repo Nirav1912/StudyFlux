@@ -20,6 +20,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import History from "../pages/History";
 import Progress from "../pages/Progress";
 import ResetPassword from "../pages/ResetPassword";
+import ForgotPassword from "../pages/Auth/ForgotPassword";
 
 export default function AppRoutes() {
   return (
@@ -32,7 +33,10 @@ export default function AppRoutes() {
         {/* Public Routes */}
         <Route path="/" element={<Landing />} />
         <Route path="/auth" element={<Auth />} />
-
+<Route
+  path="/forgot-password"
+  element={<ForgotPassword />}
+/>
         {/* Protected Routes */}
        <Route path="/reset-password" element={<ResetPassword />} />
         <Route

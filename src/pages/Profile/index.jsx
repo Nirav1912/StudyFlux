@@ -16,31 +16,41 @@ export default function Profile() {
   const { user } = useAuth();
 
   const [name, setName] = useState(
-    user?.user_metadata?.full_name || "Guest User"
-  );
+  user?.name || "Guest User"
+);
 
   const defaultAvatar =
-    "https://ui-avatars.com/api/?background=ef4444&color=fff&bold=true&name=" +
-    encodeURIComponent(user?.user_metadata?.full_name || "Guest User");
+  "https://ui-avatars.com/api/?background=ef4444&color=fff&bold=true&name=" +
+  encodeURIComponent(user?.name || "Guest User");
 
-  const [avatar, setAvatar] = useState(
-    localStorage.getItem(`studyflux-avatar-${user?.id || "guest"}`) || defaultAvatar
-  );
+const [avatar, setAvatar] = useState(
+  localStorage.getItem(`studyflux-avatar-${user?.id || "guest"}`) ||
+  defaultAvatar
+);
 
   const fileInputRef = useRef(null);
 
   // Logic Preserved Exactly
-  function changeAvatar(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const image = reader.result;
-      setAvatar(image);
-      localStorage.setItem(`studyflux-avatar-${user?.id || "guest"}`, image);
-    };
-    reader.readAsDataURL(file);
-  }
+ function changeAvatar(event) {
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    const image = reader.result;
+
+    setAvatar(image);
+
+    localStorage.setItem(
+      `studyflux-avatar-${user.id}`,
+      image
+    );
+  };
+
+  reader.readAsDataURL(file);
+}
 
   return (
     <div className="w-full space-y-10 animate-in fade-in duration-700">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { saveTestResult } from "../../api/testApi";
 import { 
   Trophy, 
   Target, 
@@ -22,6 +23,33 @@ export default function Result() {
     const savedResult = JSON.parse(localStorage.getItem("testResult"));
     setResult(savedResult);
   }, []);
+  useEffect(() => {
+  if (!result) return;
+
+  async function saveResult() {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      if (!user) return;
+
+      await saveTestResult({
+        user_id: user.id,
+        language: result.language,
+        difficulty: result.difficulty,
+        duration: result.duration,
+        total_questions: result.total,
+        score: result.score,
+        percentage: Math.round((result.score / result.total) * 100),
+      });
+
+      console.log("✅ Test saved successfully");
+    } catch (err) {
+      console.error("❌ Failed to save test:", err);
+    }
+  }
+
+  saveResult();
+}, [result]);
 
   if (!result) {
     return (
