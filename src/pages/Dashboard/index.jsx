@@ -8,6 +8,7 @@ import {
   Rocket, BarChart3, User, Clock, Target, AlertCircle
 } from "lucide-react";
 import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip } from "recharts";
+import { FaGraduationCap } from "react-icons/fa";
 
 export default function Dashboard() {
   const [results, setResults] = useState([]);
@@ -80,13 +81,39 @@ setResults(res.data.tests || []);
           {/* 2. QUICK ACTIONS TILES */}
           <section>
             <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6">Quick Actions</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
                {[
-                 { label: "Create Test", to: "/create-test", icon: Rocket, color: "bg-red-50 text-red-500" },
-                 { label: "Progress", to: "/progress", icon: BarChart3, color: "bg-emerald-50 text-emerald-600" },
-                 { label: "History", to: "/history", icon: Clock, color: "bg-purple-50 text-purple-600" },
-                 { label: "Profile", to: "/profile", icon: User, color: "bg-blue-50 text-blue-600" },
-               ].map((action, idx) => (
+  {
+    label: "Learn Anything",
+    to: "/learn-anything",
+    icon: FaGraduationCap,
+    color: "bg-indigo-50 text-indigo-600",
+  },
+  {
+    label: "Create Test",
+    to: "/create-test",
+    icon: Rocket,
+    color: "bg-red-50 text-red-500",
+  },
+  {
+    label: "Progress",
+    to: "/progress",
+    icon: BarChart3,
+    color: "bg-emerald-50 text-emerald-600",
+  },
+  {
+    label: "History",
+    to: "/history",
+    icon: Clock,
+    color: "bg-purple-50 text-purple-600",
+  },
+  {
+    label: "Profile",
+    to: "/profile",
+    icon: User,
+    color: "bg-blue-50 text-blue-600",
+  },
+].map((action, idx) => (
                  <Link key={idx} to={action.to} className="bg-white border border-slate-200 p-8 min-h-[170px] rounded-[2rem] flex flex-col items-center justify-center text-center gap-4 hover:border-red-200 hover:shadow-lg transition-all group">
                     <div className={`w-12 h-12 rounded-2xl ${action.color} flex items-center justify-center transition-transform group-hover:scale-110`}>
                       <action.icon size={24} />

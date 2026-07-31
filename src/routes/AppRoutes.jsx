@@ -22,6 +22,9 @@ import Progress from "../pages/Progress";
 import ResetPassword from "../pages/ResetPassword";
 import ForgotPassword from "../pages/Auth/ForgotPassword";
 
+import LearnAnything from "../pages/LearnAnything";
+import Workspace from "../pages/Workspace";
+
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -49,7 +52,27 @@ export default function AppRoutes() {
             </ProtectedRoute>
           }
         />
+<Route
+  path="/learn-anything"
+  element={
+    <ProtectedRoute>
+      <MainLayout>
+        <LearnAnything />
+      </MainLayout>
+    </ProtectedRoute>
+  }
+/>
 
+<Route
+  path="/workspace"
+  element={
+    <ProtectedRoute>
+      <MainLayout>
+        <Workspace />
+      </MainLayout>
+    </ProtectedRoute>
+  }
+/>
         <Route
           path="/create-test"
           element={

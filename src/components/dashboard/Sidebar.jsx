@@ -9,8 +9,13 @@ import {
   FaCog,
   FaTachometerAlt,
 } from "react-icons/fa";
+import { FaGraduationCap } from "react-icons/fa";
 
-const menu = [
+const menu = [{
+  title: "Learn Anything",
+  icon: <FaGraduationCap />,
+  path: "/learn-anything",
+},
   {
     title: "Home",
     icon: <FaHome />,
@@ -22,9 +27,9 @@ const menu = [
     path: "/dashboard",
   },
   {
-    title: "Create Test",
+    title: "AI Search",
     icon: <FaClipboardList />,
-    path: "/create-test",
+    path: "/ai-search",
   },
   {
     title: "My Tests",
